@@ -1,6 +1,6 @@
 from django.core.serializers.json import DjangoJSONEncoder
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
-from django.views.generic import TemplateView, ListView, CreateView
+from django.views.generic import TemplateView, ListView
 from django.core.files.storage import FileSystemStorage
 from django.urls import reverse_lazy
 from django.db.models import Q
@@ -8,6 +8,7 @@ from django.contrib import messages
 from simplejson import dumps, loads, JSONEncoder
 from .forms import StudyGroupForm
 from .models import StudyGroup, Book
+import json
 
 
 class Home(TemplateView):
@@ -87,16 +88,41 @@ def studygroup_detail_view(request, pk):
     studygroup.save()
     return render(request, 'studygroup_detail.html', context)
 
-class MakeStudyView(CreateView):
-    model = StudyGroup
-    form_class = StudyGroupForm
-    success_url = reverse_lazy('studygroup_list')
-    template_name = 'makestudy.html'
 
+def makestudy(request):
+    if request.method == 'POST':
+        StudyGroup.objects.create(
+            field=request.POST['field'],
+            title=request.POST['title'],
+            content=request.POST['content'],
+            author=request.POST['author'],
+        )
+        return redirect('studygroup_list')
+
+    return render(request, 'makestudy.html')
 
 def searchData(request):
-    if 'searchwords' in request.POST:
-        findthis = request.POST['searchwords']
-        contents = []
-        json = dumps(contents, cls=DjangoJSONEncoder)
+    print("searchData 입장")
+    if 'searchwords' in request.GET:
+        findthis = request.GET['searchwords']
+        print(findthis)
+        books = Book.objects.filter(field=findthis).values()
+        title = []
+        image_url = []
+        url = []
+        for book in books:
+            title.append(book['title'])
+            image_url.append(book['image_url'])
+            url.append(book['url'])
+        print(title)
+        print(image_url)
+        print(url)
+        context = {
+            'title': title,
+            'image_url': image_url,
+            'url': url,
+        }
+        json = dumps(context)
+
         return HttpResponse(json)
+

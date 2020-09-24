@@ -8,7 +8,7 @@ from mysite.core import views
 
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
-    path('makestudy/', views.MakeStudyView.as_view(), name='makestudy'),
+    path('makestudy/', views.makestudy, name='makestudy'),
     path('studygroup/', views.StudyGroupsListView.as_view(), name='studygroup_list'),
     path('studygroup/<int:pk>/', views.studygroup_detail_view, name='studygroup_detail'),
     path('search/', views.searchData, name="searchData"),
