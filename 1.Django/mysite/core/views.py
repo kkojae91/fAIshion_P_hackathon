@@ -1,14 +1,9 @@
-from django.core.serializers.json import DjangoJSONEncoder
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.views.generic import TemplateView, ListView
-from django.core.files.storage import FileSystemStorage
-from django.urls import reverse_lazy
 from django.db.models import Q
 from django.contrib import messages
-from simplejson import dumps, loads, JSONEncoder
-from .forms import StudyGroupForm
+from simplejson import dumps
 from .models import StudyGroup, Book
-import json
 
 
 class Home(TemplateView):
@@ -102,7 +97,6 @@ def makestudy(request):
     return render(request, 'makestudy.html')
 
 def searchData(request):
-    print("searchData 입장")
     if 'searchwords' in request.GET:
         findthis = request.GET['searchwords']
         print(findthis)
@@ -114,9 +108,6 @@ def searchData(request):
             title.append(book['title'])
             image_url.append(book['image_url'])
             url.append(book['url'])
-        print(title)
-        print(image_url)
-        print(url)
         context = {
             'title': title,
             'image_url': image_url,
