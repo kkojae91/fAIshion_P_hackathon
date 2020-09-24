@@ -13,15 +13,15 @@
             <!--본문-->
             <div class="card" style="width: 100%;">
                 <!--제목,분류,작성일-->
-                <div class="card-header">
-                    <strong style="font-size: 18px;">{{ studygroup.title }}</strong>
+                <div class="card-header" style="background-color: #ffecec">
+                    <strong style="font-size: 18px; color: #666666;">{{ studygroup.title }}</strong>
                     <span style="float:right;">{{ studygroup.registered_date|date:'Y.m.d. H:i' }}</span>
                 </div>
                 <div class="card-body" style="min-height: 400px; color:black;">
                     <!--작성자, 조회수-->
                     <div>
-                        <span><i class="fas fa-user-edit"></i>&nbsp;작성자 : {{ studygroup.author }}</span>
-                        <span style="float:right;">조회수 : {{ studygroup.hits }}</span>
+                        <span style="color: #666666"><i class="fas fa-user-edit" ></i>&nbsp;작성자 : {{ studygroup.author }}</span>
+                        <span style="float:right; color: #666666">조회수 : {{ studygroup.hits }}</span>
                     </div>
                     <hr>
                     {% if studygroup.upload_files %}
@@ -31,7 +31,7 @@
                     </div>
                     {% endif %}
                     <!--내용-->
-                    <div>
+                    <div style="color: #666666">
                         {{ studygroup.content | safe }}
                     </div>
                     {% load disqus_tags %}  <!-- disqus 태그 기능 사용 -->
@@ -42,10 +42,10 @@
             </div>
             <br>
             <div class="text-right" style="margin-top:-15px;">
-                <button class="btn btn-sm" id="detail_btn" onclick="location.href='/studygroup/{{ studygroup.id }}/edit/'">수정</button>
-                <button class="btn btn-sm" id="detail_btn" data-toggle="modal" data-target="#delete_modal">삭제</button>
+                <button class="btn btn-sm" id="detail_btn" onclick="location.href='/studygroup/{{ studygroup.id }}/edit/'" style="background-color: #ffecec; border-color: #ffecec; color: #666666; font-weight: bold; box-shadow: 0.5px 1px; ">수정</button>
+                <button class="btn btn-sm" id="detail_btn" data-toggle="modal" data-target="#delete_modal" style="background-color: #ffecec; border-color: #ffecec; color: #666666; font-weight: bold; box-shadow: 0.5px 1px; ">삭제</button>
                 <!-- <button class="btn btn-md btn-dark" onclick="location.href='/notice/{{ studygroup.id }}/delete/'">삭제</button> -->
-                <button class="btn btn-sm" id="detail_btn" onclick="location.href='/studygroup/'">목록으로</button>
+                <button class="btn btn-sm" id="detail_btn" onclick="location.href='/studygroup/'" style="background-color: #ffecec; border-color: #ffecec; color: #666666; font-weight: bold; box-shadow: 0.5px 1px; ">목록으로</button>
             </div>
         </div>
     </div>
@@ -54,7 +54,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">삭제경고</h5>
+                    <h5 class="modal-title" style="font-weight: bold">삭제경고</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -63,8 +63,8 @@
                     <p>게시글을 삭제하시겠습니까?</p>
                 </div>
                 <div class="modal-footer">
-                    <button onclick="delete_modal()" type="button" class="btn btn-dark">삭제하기</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal">취소하기</button>
+                    <button onclick="delete_modal()" type="button" class="btn btn-dark" style="background-color: #ffecec; border-color: #ffecec; color: #666666; font-weight: bold; box-shadow: 0.5px 1px; ">삭제하기</button>
+                    <button type="button" class="btn btn-light" data-dismiss="modal" style="background-color: #ffecec; border-color: #ffecec; color: #666666; font-weight: bold; box-shadow: 0.5px 1px; ">취소하기</button>
                 </div>
             </div>
         </div>
