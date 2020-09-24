@@ -1,33 +1,17 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.core.serializers.json import DjangoJSONEncoder
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.views.generic import TemplateView, ListView, CreateView
 from django.core.files.storage import FileSystemStorage
 from django.urls import reverse_lazy
 from django.db.models import Q
 from django.contrib import messages
-
+from simplejson import dumps, loads, JSONEncoder
 from .forms import StudyGroupForm
-from .models import StudyGroup
+from .models import StudyGroup, Book
 
 
 class Home(TemplateView):
     template_name = 'home.html'
-
-
-def upload(request):
-    context = {}
-    if request.method == 'POST':
-        uploaded_file = request.FILES['document']
-        fs = FileSystemStorage()
-        name = fs.save(uploaded_file.name, uploaded_file)
-        context['url'] = fs.url(name)
-    return render(request, 'makestudy.html', context)
-
-
-def studygroups_list(request):
-    books = StudyGroup.objects.all()
-    return render(request, 'studygroup_list.html', {
-        'books': books
-    })
 
 
 # 스터디그룹 리스트 뷰
@@ -88,7 +72,6 @@ class StudyGroupsListView(ListView):
         if len(search_keyword) > 1:
             context['q'] = search_keyword
         context['type'] = search_type
-
         return context
 
 
@@ -104,35 +87,16 @@ def studygroup_detail_view(request, pk):
     studygroup.save()
     return render(request, 'studygroup_detail.html', context)
 
-def upload_book(request):
-    if request.method == 'POST':
-        form = StudyGroupForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('book_list')
-    else:
-        form = StudyGroupForm()
-    return render(request, 'upload_book.html', {
-        'form': form
-    })
-
-
-def delete_book(request, pk):
-    if request.method == 'POST':
-        book = StudyGroup.objects.get(pk=pk)
-        book.delete()
-    return redirect('book_list')
-
-
-class BookListView(ListView):
-    model = StudyGroup
-    template_name = 'class_book_list.html'
-    context_object_name = 'books'
-
-
 class MakeStudyView(CreateView):
     model = StudyGroup
     form_class = StudyGroupForm
     success_url = reverse_lazy('studygroup_list')
     template_name = 'makestudy.html'
 
+
+def searchData(request):
+    if 'searchwords' in request.POST:
+        findthis = request.POST['searchwords']
+        contents = []
+        json = dumps(contents, cls=DjangoJSONEncoder)
+        return HttpResponse(json)

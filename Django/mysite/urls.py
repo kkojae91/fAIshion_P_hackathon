@@ -11,11 +11,7 @@ urlpatterns = [
     path('makestudy/', views.MakeStudyView.as_view(), name='makestudy'),
     path('studygroup/', views.StudyGroupsListView.as_view(), name='studygroup_list'),
     path('studygroup/<int:pk>/', views.studygroup_detail_view, name='studygroup_detail'),
-    path('books/upload/', views.upload_book, name='upload_book'),
-    path('books/<int:pk>/', views.delete_book, name='delete_book'),
-
-    path('class/books/', views.BookListView.as_view(), name='class_book_list'),
-    path('class/books/upload/', views.MakeStudyView.as_view(), name='class_upload_book'),
+    path('search/', views.searchData, name="searchData"),
 
     path('admin/', admin.site.urls),
 ]
