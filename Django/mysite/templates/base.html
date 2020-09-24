@@ -7,24 +7,24 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
   <title>{% block title %}StuOn{% endblock %}</title>
 </head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light mb-4" style="background-color:#decdc3">
+<body style="background-color: #fff9f9">
+  <nav class="navbar navbar-expand-lg navbar-light mb-4" style="background-color:#ffdcdc">
     <div class="container">
-      <a class="navbar-brand" href="{% url 'home' %}">StuOn</a>
+      <a class="navbar-brand" href="{% url 'home' %}" style="border-bottom-style: groove; border-color: #ffdcdc; font-weight: bold; color: #666666" >StuOn</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'home' %}">홈</a>
+            <a class="nav-link" href="{% url 'home' %}" style="font-weight: 600; color: #666666 " >홈</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'studygroup_list' %}">스터디 찾기</a>
+            <a class="nav-link" href="{% url 'studygroup_list' %}" style="font-weight: 600; color: #666666 " >스터디 찾기</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'makestudy' %}">스터디 만들기</a>
+            <a class="nav-link" href="{% url 'makestudy' %}" style="font-weight: 600; color: #666666 " >스터디 만들기</a>
           </li>
         </ul>
       </div>
@@ -34,7 +34,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-10 col-md-12">
         <div class="card mb-4">
-          <div class="card-body">
+          <div class="card-body" style="background-color: #fdfdfd; font-weight: 600; color: #666666">
             {% block content %}
             {% endblock %}
           </div>

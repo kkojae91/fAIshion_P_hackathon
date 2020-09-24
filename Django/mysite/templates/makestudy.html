@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>스터디 만들기</h2>
+  <h2 style="font-weight: bold">스터디 만들기</h2>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
         <div id="div_id_field" class="form-group">
@@ -10,9 +10,12 @@
                 <select name="field" class="select form-control" required="" id="id_field">
                     <option value="" selected="">---------</option>
                     <option value="algorithm">Algorithm</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                    <option value="spring">Spring</option>
+                    <option value="javascript">Javascript</option>
                     <option value="machinelearning">MachineLearning</option>
                     <option value="deeplearning">DeepLearning</option>
-                    <option value="python">Python</option>
                 </select>
             </div>
         </div>
@@ -40,7 +43,7 @@
                 <div id="results"></div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">스터디 만들기</button>
+        <button type="submit" class="btn btn-primary" style="background-color: #ffecec; border-color: #ffecec; color: #666666; font-weight: bold; box-shadow: 0.5px 1px; ">스터디 만들기</button>
   </form>
 {% endblock %}
 {% block js %}
