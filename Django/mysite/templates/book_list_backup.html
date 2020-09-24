@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  {% block content_header %}
+    <h2>스터디 찾기</h2>
+    <p>
+      <a href="{% url 'upload_book' %}" class="btn btn-primary">스터디 만들기</a>
+    </p>
+  {% endblock %}
+
+  <table class="table mb-0">
+    <thead>
+      <tr>
+        <th>스터디분류</th>
+        <th>스터디내용</th>
+        <th>작성자</th>
+        <th>작성일자</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in books %}
+        <tr>
+          <td></td>
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td></td>
+          <td></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
