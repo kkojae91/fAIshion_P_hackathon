@@ -1,12 +1,50 @@
 {% extends 'base.html' %}
 
-{% load crispy_forms_tags %}
-
 {% block content %}
   <h2>스터디 만들기</h2>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit" class="btn btn-primary">스터디 만들기</button>
+        <div id="div_id_field" class="form-group">
+            <label for="id_field" class="col-form-label  requiredField">분야<span class="asteriskField">*</span> </label>
+            <div class="">
+                <select name="field" class="select form-control" required="" id="id_field">
+                    <option value="" selected="">---------</option>
+                    <option value="Algorithm">Algorithm</option>
+                    <option value="MachineLearning">MachineLearning</option>
+                    <option value="Python">Python</option>
+                </select>
+            </div>
+        </div>
+         <div id="div_id_title" class="form-group">
+             <label for="id_title" class="col-form-label  requiredField">제목<span class="asteriskField">*</span> </label>
+             <div class="">
+                 <input type="text" name="title" maxlength="100" class="textinput textInput form-control" required="" id="id_title">
+             </div>
+         </div>
+         <div id="div_id_content" class="form-group">
+             <label for="id_content" class="col-form-label  requiredField">내용<span class="asteriskField">*</span> </label>
+             <div class="">
+                 <textarea name="content" cols="40" rows="10" class="textarea form-control" required="" id="id_content"></textarea>
+             </div>
+         </div>
+         <div id="div_id_author" class="form-group">
+             <label for="id_author" class="col-form-label  requiredField">작성자<span class="asteriskField">*</span> </label>
+             <div class="">
+                 <input type="text" name="author" maxlength="100" class="textinput textInput form-control" required="" id="id_author">
+             </div>
+         </div>
+        <div id="container" style="display: flex; justify-content: center" >
+                <div id="item" style="padding: 0 40px">
+                    <div style="display: flex; flex-direction: column; margin: 30px 0 0 0">
+{#                        <img alt="coordinate" src="{{ coordinateImage.c_image.url }}" style="width:220px; height: 300px;">#}
+                        <div id="results"></div>
+                    </div>
+                </div>
+        </div>
+        <button type="submit" class="btn btn-primary">스터디 만들기</button>
   </form>
+{% endblock %}
+{% block js %}
+{% load static %}
+<script src="{% static 'js/register.js' %}"></script>
 {% endblock %}
