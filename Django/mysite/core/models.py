@@ -7,7 +7,6 @@ class StudyGroup(models.Model):
     title = models.CharField(max_length=100, verbose_name='제목')
     content = models.TextField(verbose_name='내용')
     author = models.CharField(max_length=100, verbose_name='작성자')
-    book_title = models.CharField(max_length=100, verbose_name='교재')
     hits = models.PositiveIntegerField(verbose_name='조회수', default=0)
     registered_date = models.DateTimeField(auto_now_add=True, verbose_name='등록시간')
 

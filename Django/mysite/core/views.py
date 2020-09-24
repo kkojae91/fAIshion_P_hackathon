@@ -120,7 +120,7 @@ def searchData(request):
         context = {
             'title': title,
             'image_url': image_url,
-            'url': url,
+            'bookurl': url,
         }
         json = dumps(context)
 
